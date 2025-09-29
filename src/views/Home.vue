@@ -25,7 +25,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-btn @click="sendRequest">
+        <v-btn @click="console.log('Request Sent')" color="primary" class="ma-2" variant="outlined">
           Send Request
         </v-btn>
       </v-col>
@@ -34,18 +34,10 @@
   </v-container>
 </template>
 <script setup lang="ts" >
-import ApiService from '@/services/api.service.ts'
-import {ErrorService, SnackBarData} from '@/services/error.service.ts'
+import { SnackBarData} from '@/services/error.service.ts'
 import {ref} from 'vue'
 import Snackbar from "@/components/Snackbar.vue";
 
 const snackData = ref<SnackBarData>({on: false, color: '', text: ''})
-//methods
-const sendRequest = async() => {
-  try {
-    await ApiService.get('asdfgfewj')
-  } catch (error) {
-    await ErrorService.handleError(`Why'd you do that??`, snackData.value, error)
-  }
-}
+
 </script>
