@@ -16,6 +16,7 @@
             
             <!-- Move buttons outside carousel -->
             <img 
+                v-if="currentSlide > 0"
                 src="@/assets/PrevButton.png" 
                 class="nav-button prev-button" 
                 :class="{ 'hidden': !showControls, 'visible': showControls }"
@@ -24,6 +25,7 @@
                 @click="previousSlide" 
             />
             <img 
+                v-if="currentSlide < imageFiles.length - 1"
                 src="@/assets/NextButton.png" 
                 class="nav-button next-button" 
                 :class="{ 'hidden': !showControls, 'visible': showControls }"
@@ -39,8 +41,8 @@
                 hide-delimiter-background 
                 :show-arrows="false"
             >
-                <v-carousel-item v-for="(item, i) in 5" :key="i">
-                    <v-img src="@/assets/Artboard 1.svg" class="carousel-image" cover />
+                <v-carousel-item v-for="image of imageFiles" :key="image">
+                    <v-img :src="image" class="carousel-image" cover />
                 </v-carousel-item>
             </v-carousel>
         </div>
@@ -55,12 +57,19 @@ const dialog = defineModel('dialog', {
     required: true
 })
 
+const props = defineProps({
+    imageFiles: {
+        type: Array as () => string[],
+        required: true
+    }
+})
+
 const currentSlide = ref(0)
 const showControls = ref(true)
 let hideTimeout: NodeJS.Timeout | null = null
 
 const nextSlide = () => {
-    if (currentSlide.value < 4) {
+    if (currentSlide.value < props.imageFiles.length - 1) { // Use actual array length
         currentSlide.value++
     }
 }
@@ -117,15 +126,15 @@ onUnmounted(() => {
 }
 
 .carousel {
-    top: 13%;
+    top: 9%;
     height: 80vh;
     min-height: 80vh;
 }
 
 .carousel-image {
-    width: 90%;
+    width: 50%;
     margin: 0 auto;
-    max-height: 80vh;
+    max-height: 90vh;
     object-fit: contain;
 }
 
