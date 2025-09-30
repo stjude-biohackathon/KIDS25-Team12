@@ -53,7 +53,7 @@ import { SnackBarData } from '@/services/error.service.ts'
 import Reader from './Reader.vue'
 
 
-const dialog = ref(true)
+const dialog = ref(false)
 const openReader = () => {
   dialog.value = true
 }
