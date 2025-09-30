@@ -13,10 +13,10 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
-        path: '/meet-characters',
-        name: 'MeetCharacters',
-        component: () => import('@/views/MeetCharacters.vue')
-      }
+        path: '/componentView',
+        name: 'componentView',
+        component: () => import('@/views/Component.vue')
+    }
 ]
 
 const router = createRouter({

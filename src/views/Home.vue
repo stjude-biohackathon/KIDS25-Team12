@@ -1,47 +1,48 @@
 <template>
 <img :src="backgroundImage" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
   
-<div class="books-container">
-  <div class="book-row">
-    <div class="book" @click="showPopup = true">
-      <span class="book-title">{{ books[0].label }}</span>
+  <div class="books-container">
+    <div class="book-row">
+      <div class="book" @click="showPopup = true">
+        <span class="book-title">{{ books[0].label }}</span>
+      </div>
+      <div class="book">
+        <span class="book-title">{{ books[1].label }}</span>
+      </div>
+      <div class="book">
+        <span class="book-title">{{ books[2].label }}</span>
+      </div>
     </div>
-    <div class="book">
-      <span class="book-title">{{ books[1].label }}</span>
-    </div>
-    <div class="book">
-      <span class="book-title">{{ books[2].label }}</span>
-    </div>
-  </div>
-  <div class="book-row">
-    <div class="book">
-      <span class="book-title">{{ books[3].label }}</span>
-    </div>
-    <div class="book">
-      <span class="book-title">{{ books[4].label }}</span>
-    </div>
-    <div class="book">
-      <span class="book-title">{{ books[5].label }}</span>
-    </div>
-  </div>
-</div>
-
-<!-- Popup Modal with Animation -->
-<Transition name="popup">
-  <div v-if="showPopup" class="popup-overlay" @click="showPopup = false">
-    <div class="popup-content" @click.stop>
-      <h2>TITLE</h2>
-      <p>Description of comic</p>
-      <div class="button-container">
-        <div class="action-buttons">
-          <button @click="handleAction1" class="action-btn">Meet the Characters</button>
-          <button @click="handleAction2" class="action-btn secondary">Read the Comic</button>
-        </div>
-        <button @click="showPopup = false" class="close-btn">Close</button>
+    <div class="book-row">
+      <div class="book">
+        <span class="book-title">{{ books[3].label }}</span>
+      </div>
+      <div class="book">
+        <span class="book-title">{{ books[4].label }}</span>
+      </div>
+      <div class="book">
+        <span class="book-title">{{ books[5].label }}</span>
       </div>
     </div>
   </div>
-</Transition>
+  
+  <!-- Popup Modal with Animation -->
+  <Transition name="popup">
+    <div v-if="showPopup" class="popup-overlay" @click="showPopup = false">
+      <div class="popup-content" @click.stop>
+        <h2>TITLE</h2>
+        <p>Description of comic</p>
+        <div class="button-container">
+          <div class="action-buttons">
+            <button @click="handleAction1" class="action-btn">Meet the Characters</button>
+            <button @click="handleAction2" class="action-btn secondary">Read the Comic</button>
+          </div>
+          <button @click="showPopup = false" class="close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </Transition>
+  <Reader v-model:dialog="dialog" />
 </template>
 
 <script setup lang="ts">
@@ -49,7 +50,13 @@ import { computed, ref } from 'vue'
 import { useTheme } from 'vuetify'
 import { useRouter } from 'vue-router'
 import { SnackBarData } from '@/services/error.service.ts'
-import Snackbar from "@/components/Snackbar.vue"
+import Reader from './Reader.vue'
+
+
+const dialog = ref(false)
+const openReader = () => {
+  dialog.value = true
+}
 
 // Import images
 import lightBookcase from '@/assets/HomePageBookcase-Light.png'
@@ -67,8 +74,8 @@ router.push('/meet-characters')
 }
 
 const handleAction2 = () => {
-console.log('Action 2 clicked!')
-showPopup.value = false
+  dialog.value = true;
+  showPopup.value = false
 }
 
 const backgroundImage = computed(() => {

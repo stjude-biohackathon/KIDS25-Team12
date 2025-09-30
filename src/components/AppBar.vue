@@ -3,7 +3,7 @@
     <div style="z-index: 2001;">
       <img @click="navigateHome" class="project-logo" src="@/assets/ProjectLogo.png"></img>
     </div>
-    <v-app-bar :absolute="true" :flat="true" class="halftone-appbar" style="height: 100px">
+    <v-app-bar :absolute="true" :flat="true" class="halftone-appbar" style="height: 120px">
       <template v-slot:image>
         <v-img src="@/assets/halftone-2.png" class="halftone-background" cover />
       </template>
@@ -71,7 +71,7 @@ onBeforeMount(() => {
 
 .project-logo {
   margin-left: 10px;
-  height: 150px !important;
+  height: 190px !important;
   /* Make it large */
   width: auto !important;
   /* Maintain aspect ratio */
@@ -94,7 +94,7 @@ onBeforeMount(() => {
 }
 
 .speech-bubble-bg {
-  height: 140px;
+  height: 160px;
   /* Make it larger to extend beyond boundaries */
   width: auto;
 }
