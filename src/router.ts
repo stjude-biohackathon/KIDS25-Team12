@@ -12,11 +12,6 @@ const routes = [
         component: () => import('@/views/Home.vue'),
         meta: { requiresAuth: true }
     },
-    {
-        path: '/componentView',
-        name: 'componentView',
-        component: () => import('@/views/Component.vue')
-    }
 ]
 
 const router = createRouter({

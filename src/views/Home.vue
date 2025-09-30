@@ -42,6 +42,7 @@
       </div>
     </div>
   </Transition>
+  <Reader v-model:dialog="dialog" />
 </template>
 
 <!-- Your script stays the same -->
@@ -52,7 +53,7 @@ import { SnackBarData } from '@/services/error.service.ts'
 import Reader from './Reader.vue'
 
 
-const dialog = ref(false)
+const dialog = ref(true)
 const openReader = () => {
   dialog.value = true
 }
@@ -71,7 +72,7 @@ const handleAction1 = () => {
 }
 
 const handleAction2 = () => {
-  console.log('Action 2 clicked!')
+  dialog.value = true;
   showPopup.value = false
 }
 
