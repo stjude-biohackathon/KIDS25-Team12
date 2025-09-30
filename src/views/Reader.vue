@@ -1,148 +1,192 @@
 <template>
-    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen>
-        <div class="d-flex justify-end">
-            <img src="@/assets/Close Icon.png"
-                style="position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 2; cursor: pointer;"
-                @click="dialog = false" />
+    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)" opacity="90">
+        <div 
+            class="dialog-content"
+            @mousemove="handleMouseMove"
+            @mouseleave="handleMouseLeave"
+        >
+            <div class="d-flex justify-end">
+                <img 
+                    src="@/assets/Close Icon.png"
+                    class="close-button"
+                    :class="{ 'hidden': !showControls }"
+                    @click="dialog = false" 
+                />
+            </div>
+            
+            <!-- Move buttons outside carousel -->
+            <img 
+                src="@/assets/PrevButton.png" 
+                class="nav-button prev-button" 
+                :class="{ 'hidden': !showControls, 'visible': showControls }"
+                width="100" 
+                height="100"
+                @click="previousSlide" 
+            />
+            <img 
+                src="@/assets/NextButton.png" 
+                class="nav-button next-button" 
+                :class="{ 'hidden': !showControls, 'visible': showControls }"
+                width="100" 
+                height="100"
+                @click="nextSlide" 
+            />
+                
+            <v-carousel 
+                v-model="currentSlide"
+                height="auto" 
+                class="carousel" 
+                hide-delimiter-background 
+                :show-arrows="false"
+            >
+                <v-carousel-item v-for="(item, i) in 5" :key="i">
+                    <v-img src="@/assets/Artboard 1.svg" class="carousel-image" cover />
+                </v-carousel-item>
+            </v-carousel>
         </div>
-        <v-carousel class="w-100 h-100" hide-delimiter-background show-arrows="hover">
-            <v-carousel-item v-for="(item, i) in 5" :key="i">
-                <div class="image-zoom-container">
-                    <v-img contain src="@/assets/Artboard 1.svg" class="zoomable-image"
-                        :style="{ transform: `scale(${zoomLevel}) translate(${panX}px, ${panY}px)` }"
-                        @wheel.prevent="handleZoom" @mousedown="startPan" @mousemove="handlePan" @mouseup="endPan"
-                        @mouseleave="endPan"></v-img>
-                </div>
-            </v-carousel-item>
-            <template #next="{ props }">
-                <v-img :width="100" class="nav-button next-button" src="@/assets/NextButton.png" :height="100" v-bind="props" @click="props.onClick"></v-img>
-            </template>
-            <template #prev="{ props }">
-                <v-img class="nav-button prev-button" src="@/assets/PrevButton.png" :height="100" v-bind="props" @click="props.onClick"></v-img>
-            </template>
-        </v-carousel>
-
-        <!-- Zoom controls
-        <div class="zoom-controls">
-            <v-btn @click="zoomIn" icon="mdi-plus" size="small">
-                <v-icon>mdi-plus</v-icon>
-            </v-btn>
-            <v-btn @click="zoomOut" icon="mdi-minus" size="small"></v-btn>
-            <v-btn @click="resetZoom" icon="mdi-refresh" size="small"></v-btn>
-        </div> -->
     </v-dialog>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const dialog = defineModel('dialog', {
     type: Boolean,
     required: true
 })
 
-const zoomLevel = ref(1)
-const panX = ref(0)
-const panY = ref(0)
-const isPanning = ref(false)
-const lastMouseX = ref(0)
-const lastMouseY = ref(0)
+const currentSlide = ref(0)
+const showControls = ref(true)
+let hideTimeout: NodeJS.Timeout | null = null
 
-const handleZoom = (event: WheelEvent) => {
-    const delta = event.deltaY > 0 ? -0.1 : 0.1
-    zoomLevel.value = Math.max(0.5, Math.min(3, zoomLevel.value + delta))
-}
-
-const zoomIn = () => {
-    zoomLevel.value = Math.min(3, zoomLevel.value + 0.2)
-}
-
-const zoomOut = () => {
-    zoomLevel.value = Math.max(0.5, zoomLevel.value - 0.2)
-}
-
-const resetZoom = () => {
-    zoomLevel.value = 1
-    panX.value = 0
-    panY.value = 0
-}
-
-const startPan = (event: MouseEvent) => {
-    if (zoomLevel.value > 1) {
-        isPanning.value = true
-        lastMouseX.value = event.clientX
-        lastMouseY.value = event.clientY
+const nextSlide = () => {
+    if (currentSlide.value < 4) {
+        currentSlide.value++
     }
 }
 
-const handlePan = (event: MouseEvent) => {
-    if (isPanning.value && zoomLevel.value > 1) {
-        const deltaX = event.clientX - lastMouseX.value
-        const deltaY = event.clientY - lastMouseY.value
-
-        panX.value += deltaX / zoomLevel.value
-        panY.value += deltaY / zoomLevel.value
-
-        lastMouseX.value = event.clientX
-        lastMouseY.value = event.clientY
+const previousSlide = () => {
+    if (currentSlide.value > 0) {
+        currentSlide.value--
     }
 }
 
-const endPan = () => {
-    isPanning.value = false
+const showControlsTemporarily = () => {
+    showControls.value = true
+    
+    // Clear existing timeout
+    if (hideTimeout) {
+        clearTimeout(hideTimeout)
+    }
+    
+    // Set new timeout to hide controls after 2 seconds
+    hideTimeout = setTimeout(() => {
+        showControls.value = false
+    }, 2000)
 }
+
+const handleMouseMove = () => {
+    showControlsTemporarily()
+}
+
+const handleMouseLeave = () => {
+    // Hide controls immediately when mouse leaves the dialog
+    if (hideTimeout) {
+        clearTimeout(hideTimeout)
+    }
+    showControls.value = false
+}
+
+onMounted(() => {
+    // Show controls initially
+    showControlsTemporarily()
+})
+
+onUnmounted(() => {
+    if (hideTimeout) {
+        clearTimeout(hideTimeout)
+    }
+})
 </script>
 
 <style scoped>
-/* .image-zoom-container {
+.dialog-content {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    height: 100%;
     position: relative;
-} */
-
-/* .zoomable-image {
-    width: 100% !important;
-    height: 100% !important;
-    cursor: grab;
-    transition: transform 0.1s ease-out;
-    transform-origin: center center;
-} */
-
-/* .zoomable-image:active {
-    cursor: grabbing;
 }
 
-.zoom-controls {
+.carousel {
+    top: 13%;
+    height: 80vh;
+    min-height: 80vh;
+}
+
+.carousel-image {
+    width: 90%;
+    margin: 0 auto;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.close-button {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 8px;
-    z-index: 3;
-} */
+    top: 0px;
+    right: 0px;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.close-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
 .nav-button {
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    position: fixed !important;
+    top: 50vh !important;
+    transform: translateY(-50%) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    z-index: 1000;
+    opacity: 1;
 }
 
 .nav-button:hover {
     opacity: 0.8;
-    transform: scale(1.05);
+    transform: translateY(-50%) scale(1.05) !important;
 }
 
 .prev-button {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
+    left: 20px !important;
+}
+
+.prev-button.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: translateY(-50%) translateX(-120px) !important; /* Slide out to the left */
+}
+
+.prev-button.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) !important; /* Slide in from the left */
 }
 
 .next-button {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    right: 20px !important;
+}
+
+.next-button.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: translateY(-50%) translateX(120px) !important; /* Slide out to the right */
+}
+
+.next-button.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) !important; /* Slide in from the right */
 }
 </style>
