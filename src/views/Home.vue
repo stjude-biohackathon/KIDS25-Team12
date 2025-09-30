@@ -3,7 +3,7 @@
   <div class="d-flex justify-center align-center">
     <div class="books-grid">
       <div class="book" v-for="book of books" :key="book.id" @click="handleBookClick(book)">
-        <img :src="book.cover" alt="Book Cover" />
+        <img :src="book.cover" alt="Book Cover" height="150" />
       </div>
     </div>
   </div>
@@ -36,27 +36,17 @@ import darkBookcase from '@/assets/HomePageBookcase-Dark.png'
 
 const theme = useTheme()
 
-const handleAction1 = () => {
-  console.log('Action 1 clicked!')
-  previewDialog.value = false
-}
-
-const handleAction2 = () => {
-  dialog.value = true;
-  showPopup.value = false
-}
-
 const backgroundImage = computed(() => {
 return theme.global.name.value === 'light' ? lightBookcase : darkBookcase
 })
 
 const books = ref([
   { id: 0, cover: '/comics-1/Sample Comic Cover-1.png', label: 'CAR-T Titans', comics: ['/comics-1/Page1.svg', '/comics-1/Page1.svg'], description: 'Dive into the thrilling world of CAR-T therapy with "CAR-T Titans." Follow the journey of brave heroes battling cancer at the cellular level, showcasing the power of cutting-edge science and teamwork.' },
-  { id: 1, cover: '/comics-2/Sample Comic Cover-2.png', label: 'Neuron Nebula: Pt. II', comics: ['comics-1/Page1.svg'], description: 'Explore the mysteries of the mind in "Neuron Nebula: Pt. II." This captivating sequel delves deeper into the neural universe, where every thought and memory is a star in the vast expanse of human consciousness.' },
-  { id: 2, cover: '/comics-3/Sample Comic Cover-3.png', label: 'Return of the Ganglia', comics: ['comics-1/Page1.svg'], description: 'Join the adventure in "Return of the Ganglia," where a group of unlikely heroes embarks on a quest to restore balance to the nervous system. Packed with action, humor, and heart, this comic is a must-read for all ages.' },
-  { id: 3, cover: '/comics-4/Sample Comic Cover-4.png', label: 'Lord Leukemia: An Origin Story', comics: ['comics-1/Page1.svg'], description: 'Uncover the origins of a formidable foe in "Lord Leukemia: An Origin Story." This gripping tale reveals the rise of a villain determined to conquer the body, and the heroes who stand against him in a battle for survival.' },
-  { id: 4, cover: '/comics-5/Sample Comic Cover-5.png', label: 'fMRI: The All-Seeing Eye', comics: ['comics-1/Page1.svg'], description: 'Step into the future with "fMRI: The All-Seeing Eye." This visionary comic explores the incredible technology of functional MRI, allowing readers to witness the brain in action and understand the complexities of human thought and emotion.' },
-  { id: 5, cover: '/comics-6/Sample Comic Cover-6.png', label: 'BMT: At the Transplant', comics: ['comics-1/Page1.svg'], description: 'Experience the life-saving journey in "BMT: At the Transplant." Follow patients and medical teams through the challenges and triumphs of bone marrow transplantation, highlighting the resilience of the human spirit and the miracles of modern medicine.' },
+  { id: 1, cover: '/comics-2/NeuronNebula.png', label: 'Neuron Nebula: Pt. II', comics: ['comics-1/Page1.svg'], description: 'Explore the mysteries of the mind in "Neuron Nebula: Pt. II." This captivating sequel delves deeper into the neural universe, where every thought and memory is a star in the vast expanse of human consciousness.' },
+  { id: 2, cover: '/comics-3/ReturnofTheGanglia.png', label: 'Return of the Ganglia', comics: ['comics-1/Page1.svg'], description: 'Join the adventure in "Return of the Ganglia," where a group of unlikely heroes embarks on a quest to restore balance to the nervous system. Packed with action, humor, and heart, this comic is a must-read for all ages.' },
+  { id: 3, cover: '/comics-4/LordLeukemia.png', label: 'Lord Leukemia: An Origin Story', comics: ['comics-1/Page1.svg'], description: 'Uncover the origins of a formidable foe in "Lord Leukemia: An Origin Story." This gripping tale reveals the rise of a villain determined to conquer the body, and the heroes who stand against him in a battle for survival.' },
+  { id: 4, cover: '/comics-5/fMRIAllSeeingEye.png', label: 'fMRI: The All-Seeing Eye', comics: ['comics-1/Page1.svg'], description: 'Step into the future with "fMRI: The All-Seeing Eye." This visionary comic explores the incredible technology of functional MRI, allowing readers to witness the brain in action and understand the complexities of human thought and emotion.' },
+  { id: 5, cover: '/comics-6/BMTTransplant.png', label: 'BMT: At the Transplant', comics: ['comics-1/Page1.svg'], description: 'Experience the life-saving journey in "BMT: At the Transplant." Follow patients and medical teams through the challenges and triumphs of bone marrow transplantation, highlighting the resilience of the human spirit and the miracles of modern medicine.' },
 ])
 
 const selectedBook = ref(books.value[0]); 
@@ -67,8 +57,9 @@ const selectedBook = ref(books.value[0]);
 /* Your existing styles... */
 .books-grid {
   display: grid;
+  height: 53%;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 222px 222px;
+  grid-template-rows: 30vh 30vh;
   /* Two rows, each taking 222px */
   position: absolute;
   top: 30%;
@@ -87,6 +78,7 @@ const selectedBook = ref(books.value[0]);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 15);
 }
 
 .book:hover {
