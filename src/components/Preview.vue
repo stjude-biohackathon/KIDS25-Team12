@@ -1,25 +1,25 @@
 <template>
-    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)" opacity="90">
-        <div 
-            class="dialog-content"
-            @mousemove="handleMouseMove"
-            @mouseleave="handleMouseLeave"
-        >
+    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)"
+        opacity="90">
+        <div class="dialog-content" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
             <div class="d-flex justify-end">
-                <img 
-                    src="@/assets/Close Icon.png"
-                    class="close-button"
-                    :class="{ 'hidden': !showControls }"
-                    @click="dialog = false" 
-                />
+                <img src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
+                    @click="dialog = false" />
             </div>
-            <v-card width="400" class="mx-auto my-12 pa-4" :elevation="12">
-                <v-img :src="book.cover" class="mb-4" height="150" contain />
-                <v-card-title class="text-h6">{{ book.label }}</v-card-title>
-                <v-card-text class="text-body-2">{{ book.description }}</v-card-text>
-                <div class="button-container">
-                    <v-btn class="action-btn" @click="$emit('open-reader')">Read the Comic!</v-btn>
-                    <v-btn class="action-btn secondary" @click="$emit('view-details')">Meet the Characters</v-btn>
+            <v-card width="700" class="mx-auto my-12 pa-5" :elevation="12">
+                <v-card-title class="text-h6 text-center">{{ book.label }}</v-card-title>
+                <div class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                        <img :src="book.cover" class="mb-4" height="300" contain />
+                    </div>
+                    <div class="d-flex flex-column ml-4">
+                        <v-card-text class="text-body-2">{{ book.description }}</v-card-text>
+                        <div class="button-container">
+                            <v-btn class="action-btn" @click="emits('open-reader')">Read the Comic!</v-btn>
+                            <v-btn class="action-btn secondary" @click="emits('open-characters')">Meet the
+                                Characters</v-btn>
+                        </div>
+                    </div>
                 </div>
             </v-card>
         </div>
@@ -47,17 +47,19 @@ const props = defineProps({
     }
 })
 
+const emits = defineEmits(['open-reader', 'open-characters'])
+
 const showControls = ref(true)
 let hideTimeout: NodeJS.Timeout | null = null
 
 const showControlsTemporarily = () => {
     showControls.value = true
-    
+
     // Clear existing timeout
     if (hideTimeout) {
         clearTimeout(hideTimeout)
     }
-    
+
     // Set new timeout to hide controls after 2 seconds
     hideTimeout = setTimeout(() => {
         showControls.value = false
@@ -89,7 +91,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-
 .button-container {
     display: flex;
     justify-content: center;
