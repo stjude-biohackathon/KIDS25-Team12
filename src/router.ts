@@ -13,9 +13,9 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
-        path: '/componentView',
-        name: 'componentView',
-        component: () => import('@/views/Component.vue')
+        path: '/meet-characters',
+        name: 'MeetCharacters',
+        component: () => import('@/views/MeetCharacters.vue')
     }
 ]
 
