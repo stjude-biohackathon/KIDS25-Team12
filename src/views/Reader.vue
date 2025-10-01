@@ -39,6 +39,7 @@
                 height="auto" 
                 class="carousel" 
                 hide-delimiter-background 
+                hide-delimiters
                 :show-arrows="false"
             >
                 <v-carousel-item v-for="image of imageFiles" :key="image">
@@ -107,7 +108,7 @@ const handleMouseLeave = () => {
 }
 
 onMounted(() => {
-    // Show controls initially
+    currentSlide.value = 0;
     showControlsTemporarily()
 })
 
@@ -140,8 +141,8 @@ onUnmounted(() => {
 
 .close-button {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 40px;
+    right: 40px;
     width: 100px;
     height: 100px;
     z-index: 2;

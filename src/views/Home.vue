@@ -1,19 +1,19 @@
 <template>
   <img :src="backgroundImage" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+  <p class="adventure-title">Choose Your Adventure</p>
   <div class="d-flex justify-center align-center">
     <div class="books-grid">
       <div class="book" v-for="book of books" :key="book.id" @click="handleBookClick(book)">
-        <img :src="book.cover" alt="Book Cover" height="200" />
+        <img :src="book.cover" alt="Book Cover" class="book-cover" />
       </div>
     </div>
   </div>
 
-  <!-- Popup Modal with Animation -->
-  <Preview :book="selectedBook" v-model:dialog="previewDialog"
+  <Preview v-if="previewDialog" :book="selectedBook" v-model:dialog="previewDialog"
     @open-reader="() => { previewDialog = false; readerDialog = true }"
     @open-characters="() => { previewDialog = false; charactersDialog = true }" />
-  <Reader v-model:dialog="readerDialog" :image-files="selectedBook.comics || []" />
-  <MeetCharacters v-model:dialog="charactersDialog" :image-files="selectedBook.characterFiles || []"
+  <Reader v-if="readerDialog" v-model:dialog="readerDialog" :image-files="selectedBook.comics || []" />
+  <MeetCharacters v-if="charactersDialog" v-model:dialog="charactersDialog" :image-files="selectedBook.characterFiles || []"
     :character-descriptions="selectedBook.characterDescriptions || []" />
 </template>
 <script setup lang="ts">
@@ -46,7 +46,6 @@ const backgroundImage = computed(() => {
   return theme.global.name.value === 'light' ? lightBookcase : darkBookcase
 })
 
-
 const selectedBook = ref(books.value[0]); 
 </script>
 
@@ -58,12 +57,11 @@ const selectedBook = ref(books.value[0]);
   height: 53%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 30vh 30vh;
-  /* Two rows, each taking 222px */
   position: absolute;
-  top: 31%;
+  top: 27.5%;
   z-index: 2;
   row-gap: 1.3vh;
-  column-gap: 8.3vw;
+  column-gap: 6.6vw;
 }
 
 .book {
@@ -72,12 +70,17 @@ const selectedBook = ref(books.value[0]);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease;
-  width: 100px;
-  height: 150px;
+  width: 8.91vw;
+  height: 26.1vh;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 15);
+}
+
+.book-cover {
+  width: 8.91vw;
+  height: 26.1vh;
 }
 
 .book:hover {
@@ -173,5 +176,17 @@ const selectedBook = ref(books.value[0]);
 .action-btn:hover,
 .close-btn:hover {
   opacity: 0.8;
+}
+
+.adventure-title {
+  position: absolute;
+  top: 12.5%;
+  width: 100%;
+  text-align: center;
+  font-size: 4.0vw;
+  color: #ffffff;
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 8.0);
+  z-index: 2000;
+  font-family: 'Bangers', cursive, sans-serif;
 }
 </style>

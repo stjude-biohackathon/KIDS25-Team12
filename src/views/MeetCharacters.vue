@@ -121,6 +121,7 @@ const handleMouseLeave = () => {
 }
 
 onMounted(() => {
+    currentSlide.value = 0;
     showControlsTemporarily()
 })
 
@@ -139,14 +140,14 @@ onUnmounted(() => {
 }
 
 .carousel {
-    top: 9%;
+    top: 12%;
     height: 90vh;
     min-height: 90vh;
 }
 
 .carousel-image {
     width: 50%;
-    margin: 40px auto 0 auto;
+    margin: 4% auto 0 auto;
     max-height: 70vh;
     object-fit: contain;
 }
@@ -162,8 +163,8 @@ onUnmounted(() => {
 
 .close-button {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 40px;
+    right: 40px;
     width: 100px;
     height: 100px;
     z-index: 2;

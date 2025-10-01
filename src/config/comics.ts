@@ -24,6 +24,16 @@ export const comicsConfig = [
     comics: ["/comics-1/pages/Page1.svg"],
     description:
       'Explore the mysteries of the mind in "Neuron Nebula: Pt. II." This captivating sequel delves deeper into the neural universe, where every thought and memory is a star in the vast expanse of human consciousness.',
+    characterFiles: [
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
+    ],
+    characterDescriptions: [
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+    ],
   },
   {
     id: 2,
@@ -32,6 +42,16 @@ export const comicsConfig = [
     comics: ["/comics-1/pages/Page1.svg"],
     description:
       'Join the adventure in "Return of the Ganglia," where a group of unlikely heroes embarks on a quest to restore balance to the nervous system. Packed with action, humor, and heart, this comic is a must-read for all ages.',
+    characterFiles: [
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
+    ],
+    characterDescriptions: [
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+    ],
   },
   {
     id: 3,
@@ -40,6 +60,16 @@ export const comicsConfig = [
     comics: ["/comics-1/pages/Page1.svg"],
     description:
       'Uncover the origins of a formidable foe in "Lord Leukemia: An Origin Story." This gripping tale reveals the rise of a villain determined to conquer the body, and the heroes who stand against him in a battle for survival.',
+    characterFiles: [
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
+    ],
+    characterDescriptions: [
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+    ],
   },
   {
     id: 4,
@@ -48,6 +78,16 @@ export const comicsConfig = [
     comics: ["/comics-1/pages/Page1.svg"],
     description:
       'Step into the future with "fMRI: The All-Seeing Eye." This visionary comic explores the incredible technology of functional MRI, allowing readers to witness the brain in action and understand the complexities of human thought and emotion.',
+    characterFiles: [
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
+    ],
+    characterDescriptions: [
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+    ],
   },
   {
     id: 5,
@@ -56,5 +96,15 @@ export const comicsConfig = [
     comics: ["/comics-1/pages/Page1.svg"],
     description:
       'Experience the life-saving journey in "BMT: At the Transplant." Follow patients and medical teams through the challenges and triumphs of bone marrow transplantation, highlighting the resilience of the human spirit and the miracles of modern medicine.',
+    characterFiles: [
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
+    ],
+    characterDescriptions: [
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+    ],
   },
 ];
