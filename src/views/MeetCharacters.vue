@@ -1,5 +1,6 @@
 <template>
-    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)" opacity="90">
+    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)"
+        opacity="90">
         <div class="dialog-content" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
             <div class="d-flex justify-end">
                 <img src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
@@ -14,34 +15,25 @@
                 class="nav-button next-button" :class="{ 'hidden': !showControls, 'visible': showControls }" width="100"
                 height="100" @click="nextSlide" />
 
-            <v-carousel v-model="currentSlide" height="auto" class="carousel" hide-delimiter-background
-                :show-arrows="false">
+            <v-carousel v-model="currentSlide" height="auto" hide-delimiter-background
+                :show-arrows="false" hide-delimiters>
                 <v-carousel-item v-for="(image, index) of imageFiles" :key="image"
-                    class="d-flex flex-column align-center justify-center">
-                    <v-img 
-                        :src="image" 
-                        class="carousel-image" 
-                        @load="onImageLoad(index)"
-                        @error="onImageError(index)"
-                    />
-                    
+                    class="carousel-item">
+                    <v-img :src="image" class="carousel-image" @load="onImageLoad(index)"
+                        @error="onImageError(index)" />
+
                     <!-- Only show span when current image is loaded -->
-                    <div 
-                        class="d-flex justify-center mt-4" 
-                        v-if="characterDescriptions && 
-                               characterDescriptions.length > currentSlide && 
-                               loadedImages[currentSlide]"
-                    >
+                    <div class="d-flex justify-center mt-4 description-text" v-if="characterDescriptions &&
+                        characterDescriptions.length > currentSlide &&
+                        loadedImages[currentSlide]">
                         <span class="character-description">
                             {{ characterDescriptions[currentSlide] }}
                         </span>
                     </div>
-                    
+
                     <!-- Optional loading indicator -->
-                    <div 
-                        class="d-flex justify-center mt-4" 
-                        v-if="!loadedImages[currentSlide] && index === currentSlide"
-                    >
+                    <div class="d-flex justify-center mt-4"
+                        v-if="!loadedImages[currentSlide] && index === currentSlide">
                         <v-progress-circular indeterminate color="white" size="32"></v-progress-circular>
                     </div>
                 </v-carousel-item>
@@ -148,15 +140,24 @@ onUnmounted(() => {
 
 .carousel {
     top: 9%;
-    height: 80vh;
-    min-height: 80vh;
+    height: 90vh;
+    min-height: 90vh;
 }
 
 .carousel-image {
     width: 50%;
-    margin: 0 auto;
-    max-height: 80vh;
+    margin: 40px auto 0 auto;
+    max-height: 70vh;
     object-fit: contain;
+}
+
+.carousel-item {
+    padding-top: 10vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .close-button {
@@ -235,7 +236,7 @@ onUnmounted(() => {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 80%;
     line-height: 1.2;
-    
+
     /* Add a nice fade-in animation */
     animation: fadeInUp 0.5s ease-out;
 }
@@ -245,6 +246,7 @@ onUnmounted(() => {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

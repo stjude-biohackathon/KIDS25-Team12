@@ -1,8 +1,8 @@
 export const comicsConfig = [
   {
     id: 0,
-    cover: "/comics-1/Sample Comic Cover-1.png",
-    label: "CAR-T Titans",
+    cover: "/comics-1/Captain Car.png",
+    label: "The Rise of Captain CAR",
     comics: ["/comics-1/pages/Page1.svg", "/comics-1/pages/Page1.svg"],
     description:
       'Dive into the thrilling world of CAR-T therapy with "CAR-T Titans." Follow the journey of brave heroes battling cancer at the cellular level, showcasing the power of cutting-edge science and teamwork.',
@@ -12,9 +12,9 @@ export const comicsConfig = [
       "/comics-1/characters/VectorVortex.png",
     ],
     characterDescriptions: [
-      "Character 1 is a fearless leader with a heart of gold, determined to save lives through innovative treatments.",
-      "Character 2 is a brilliant scientist whose inventions are key to the success of CAR-T therapy.",
-      "Character 3 is a cunning strategist who uses their intellect to outsmart opponents and protect their team.",
+      "A shapeshifting villain who has made a comeback since his original comic Leukemia Lord: Origin Story. Leukemia Lord’s powers include overtaking the body’s emergency response system by crowding out its defense teams, including Team B- and T-Cell. His arch nemeses include Captain Chemo and T-Cell Titan. His sneaky tricks stop B and T-cell defense teams led by T-Cell Titan from doing their job, giving him the power to grow stronger.",
+      "A tech-wizard superhero who designs special “upgrade codes” to power-up T-Cell Titan into Captain CAR. Vector Vortex is a scientific superhero whose goal is simple: to defeat Lord Leukemia. Through powering up T-Cell Titan and his response team giving them the strength they need to take on Lord Leukemia. Without him, no transformation would be possible.",
+      "A brave frontline fighter who leads the defense team into battle whenever danger threatens. He’s strong, fast, and determined to protect the body at all costs. When powered up by Vector Vortex’s upgrade, he transforms into Captain CAR — a supercharged hero ready to defeat Lord Leukemia once and for all.",
     ],
   },
   {
