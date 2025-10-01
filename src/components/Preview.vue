@@ -3,10 +3,20 @@
         opacity="90">
         <div class="dialog-content" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
             <div class="d-flex justify-end">
-                <img v-if="theme.global.name.value == 'light'" src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
-                    @click="dialog = false" />
-                <img v-if="theme.global.name.value == 'dark'" src="@/assets/dark/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
-                    @click="dialog = false" />
+                <img 
+                  v-if="theme.global.name.value == 'light'"
+                  src="@/assets/Close Icon.png"
+                  class="close-button"
+                  :class="{ 'hidden': !showControls }"
+                  @click="colorButtonOnClose"
+                />
+                <img 
+                  v-if="theme.global.name.value == 'dark'"
+                  src="@/assets/dark/Close Icon.png"
+                  class="close-button"
+                  :class="{ 'hidden': !showControls }"
+                  @click="colorButtonOnClose"
+                />
             </div>
             <v-card width="800" class="mx-auto my-12 pa-7" :elevation="12">
                 <v-card-title class="text-h3 text-center mb-5" style="font-family: 'Bangers';">{{ book.label
@@ -92,9 +102,16 @@ const handleMouseLeave = () => {
     showControls.value = false
 }
 
+// Reuse a single Audio instance to avoid overlap/reload cost
+let clickAudio: HTMLAudioElement | null = null;
+
 onMounted(() => {
     // Show controls initially
     showControlsTemporarily()
+
+    // Use any file you want from public/audio
+    clickAudio = new Audio("/audio/17.m4a");
+    clickAudio.preload = "auto";
 })
 
 onUnmounted(() => {
@@ -102,6 +119,17 @@ onUnmounted(() => {
         clearTimeout(hideTimeout)
     }
 })
+
+async function colorButtonOnClose() {
+  try {
+    const a = clickAudio ?? new Audio("/audio/13.m4a");
+    a.currentTime = 0;
+    await a.play(); // ensure playback actually starts
+  } catch (e) {
+    console.error("Playback error:", e);
+  }
+  dialog.value = false; // close after play has begun
+}
 </script>
 
 <style scoped>

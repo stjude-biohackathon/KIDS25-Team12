@@ -67,6 +67,11 @@ const readerDialog = ref(false);
 const handleBookClick = (book: any) => {
   selectedBook.value = book;
   previewDialog.value = true;
+
+  const audioFile = new Audio('/audio/17.m4a');
+  audioFile.play().catch(err => {
+    console.error("Audio playback failed:", err);
+  });
 }
 const books = ref(comicsConfig);
 // Import images
@@ -308,6 +313,7 @@ const selectedBook = ref(books.value[0]);
   z-index: 2000;
   font-family: 'Bangers', cursive, sans-serif;
 }
+<<<<<<< Updated upstream
 
 
 .shooting-star {
