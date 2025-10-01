@@ -15,8 +15,8 @@
                     <div class="ml-4">
                         <v-card-text class="book-description">{{ book.description }}</v-card-text>
                         <div class="mt-16 button-container">
-                            <img class="img-btn" src="@/assets/ReadTheComicBtn.svg" height="130" @click="emits('open-reader')" />
-                            <img class="img-btn" src="@/assets/MeetTheCharactersBtn.svg" height="130" @click="emits('open-characters')" />
+                            <img class="img-btn" src="@/assets/ReadTheComicBtn.png" height="130" @click="emits('open-reader')" />
+                            <img class="img-btn" src="@/assets/MeetTheCharactersBtn.png" height="130" @click="emits('open-characters')" />
                         </div>
                     </div>
                 </div>
