@@ -1,8 +1,8 @@
 <template>
   <div>
     <div style="z-index: 2001;">
-      <img v-if="theme.global.name.value === 'light'" @click="navigateHome" class="project-logo" src="@/assets/ProjectLogo.png"></img>
-      <img v-if="theme.global.name.value === 'dark'" @click="navigateHome" class="project-logo" src="@/assets/dark/ProjectLogo.png"></img>
+      <img @click="navigateHome" class="project-logo"
+        src="@/assets/ProjectLogo.png"></img>
     </div>
     <v-app-bar :absolute="true" :flat="true" class="halftone-appbar" style="height: 120px">
       <template v-slot:image>
@@ -11,12 +11,13 @@
     </v-app-bar>
     <div class="speech-bubble-container">
       <img v-if="theme.global.name.value === 'light'" src="@/assets/12in_ComicSpeech_1.png" class="speech-bubble-bg" />
-      <img v-if="theme.global.name.value === 'dark'" src="@/assets/dark/12in_ComicSpeech_1.png" class="speech-bubble-bg" />
+      <img v-if="theme.global.name.value === 'dark'" src="@/assets/dark/12in_ComicSpeech_1.png"
+        class="speech-bubble-bg" />
       <v-chip class="theme-button-overlay" @click="changeTheme" color="grey-darken-2" variant="text">
         <v-icon class="mr-1" :color="theme.global.name.value === 'light' ? 'grey' : 'black'" icon="$whiteBalanceSunny"
           size="18" />
-        <v-icon class="ml-1" :color="theme.global.name.value === 'dark' ? 'white' : 'gray-lighten-2'" icon="$weatherNight"
-          size="18" />
+        <v-icon class="ml-1" :color="theme.global.name.value === 'dark' ? 'white' : 'gray-lighten-2'"
+          icon="$weatherNight" size="18" />
       </v-chip>
     </div>
   </div>
@@ -72,6 +73,7 @@ onBeforeMount(() => {
 
 .project-logo {
   margin-left: 10px;
+  max-height: 190px;
   height: 190px !important;
   /* Make it large */
   width: auto !important;
@@ -81,6 +83,19 @@ onBeforeMount(() => {
   top: -10px;
   /* Adjust position as needed */
   z-index: 2001;
+}
+
+.dark-project-logo {
+    margin-left: 10px;
+    max-height: 150px;
+    height: 150px !important;
+    width: auto !important;
+    /* Maintain aspect ratio */
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    /* Adjust position as needed */
+    z-index: 2001;
 }
 
 .speech-bubble-container {
