@@ -3,11 +3,14 @@
         opacity="90">
         <div class="dialog-content" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
             <div class="d-flex justify-end">
-                <img src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
+                <img v-if="theme.global.name.value == 'light'" src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
+                    @click="dialog = false" />
+                <img v-if="theme.global.name.value == 'dark'" src="@/assets/dark/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
                     @click="dialog = false" />
             </div>
             <v-card width="800" class="mx-auto my-12 pa-7" :elevation="12">
-                <v-card-title class="text-h3 text-center mb-5" style="font-family: 'Bangers';">{{ book.label }}</v-card-title>
+                <v-card-title class="text-h3 text-center mb-5" style="font-family: 'Bangers';">{{ book.label
+                    }}</v-card-title>
                 <div class="d-flex justify-center">
                     <div class="d-flex flex-column justify-center">
                         <img :src="book.cover" class="mb-4" height="400" contain />
@@ -15,8 +18,17 @@
                     <div class="ml-4">
                         <v-card-text class="book-description">{{ book.description }}</v-card-text>
                         <div class="mt-16 button-container">
-                            <img class="img-btn" src="@/assets/ReadTheComicBtn.png" height="130" @click="emits('open-reader')" />
-                            <img class="img-btn" src="@/assets/MeetTheCharactersBtn.png" height="130" @click="emits('open-characters')" />
+                            <img v-if="theme.global.name.value === 'light'" class="img-btn"
+                                src="@/assets/ReadTheComicBtn.png" height="130" @click="emits('open-reader')" />
+                            <img v-if="theme.global.name.value === 'dark'" class="img-btn"
+                                src="@/assets/dark/ReadTheComicBtn.png" height="130" @click="emits('open-reader')" />
+                            <img v-if="theme.global.name.value === 'light'" class="img-btn"
+                                src="@/assets/MeetTheCharactersBtn.png" height="130"
+                                @click="emits('open-characters')" />
+                            <img v-if="theme.global.name.value === 'dark'" class="img-btn"
+                                src="@/assets/dark/MeetTheCharactersBtn.png" height="130"
+                                @click="emits('open-characters')" />
+
                         </div>
                     </div>
                 </div>
@@ -27,6 +39,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useTheme } from 'vuetify';
+
+const theme = useTheme();
 
 const dialog = defineModel('dialog', {
     type: Boolean,
@@ -110,7 +125,7 @@ onUnmounted(() => {
     top: 40px;
     right: 40px;
     width: 100px;
-    height: 100px;
+    height: 80px;
     z-index: 2;
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
@@ -124,7 +139,8 @@ onUnmounted(() => {
 
 .img-btn:hover {
     transform: translateY(-4px) scale(1.02);
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)); /* Shadow follows SVG shape */
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    /* Shadow follows SVG shape */
 }
 
 .close-button.hidden {

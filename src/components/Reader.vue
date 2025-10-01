@@ -1,47 +1,29 @@
 <template>
-    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)" opacity="90">
-        <div 
-            class="dialog-content"
-            @mousemove="handleMouseMove"
-            @mouseleave="handleMouseLeave"
-        >
+    <v-dialog v-model="dialog" @update-modelValue="(n: any) => dialog = n" fullscreen scrim="rgba(0, 0, 0, 0.8)"
+        opacity="90">
+        <div class="dialog-content" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
             <div class="d-flex justify-end">
-                <img 
-                    src="@/assets/Close Icon.png"
-                    class="close-button"
-                    :class="{ 'hidden': !showControls }"
-                    @click="dialog = false" 
-                />
+                <img v-if="theme.global.name.value == 'light'" src="@/assets/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
+                    @click="dialog = false" />
+                <img v-if="theme.global.name.value == 'dark'" src="@/assets/dark/Close Icon.png" class="close-button" :class="{ 'hidden': !showControls }"
+                    @click="dialog = false" />
             </div>
-            
+
             <!-- Move buttons outside carousel -->
-            <img 
-                v-if="currentSlide > 0"
-                src="@/assets/PrevButton.png" 
-                class="nav-button prev-button" 
-                :class="{ 'hidden': !showControls, 'visible': showControls }"
-                width="100" 
-                height="100"
-                @click="previousSlide" 
-            />
-            <img 
-                v-if="currentSlide < imageFiles.length - 1"
-                src="@/assets/NextButton.png" 
-                class="nav-button next-button" 
-                :class="{ 'hidden': !showControls, 'visible': showControls }"
-                width="100" 
-                height="100"
-                @click="nextSlide" 
-            />
-                
-            <v-carousel 
-                v-model="currentSlide"
-                height="auto" 
-                class="carousel" 
-                hide-delimiter-background 
-                hide-delimiters
-                :show-arrows="false"
-            >
+            <img v-if="currentSlide > 0 && theme.global.name.value === 'light'" src="@/assets/PrevButton.png"
+                class="nav-button prev-button" :class="{ 'hidden': !showControls, 'visible': showControls }" width="100"
+                height="100" @click="previousSlide" />
+            <img v-if="currentSlide > 0 && theme.global.name.value === 'dark'" src="@/assets/dark/PrevButton.png"
+                class="nav-button prev-button" :class="{ 'hidden': !showControls, 'visible': showControls }" width="85"
+                height="60" @click="previousSlide" />
+            <img v-if="currentSlide < imageFiles.length - 1 && theme.global.name.value == 'light'" src="@/assets/NextButton.png"
+                class="nav-button next-button" :class="{ 'hidden': !showControls, 'visible': showControls }" width="100"
+                height="100" @click="nextSlide" />
+            <img v-if="currentSlide < imageFiles.length - 1 && theme.global.name.value == 'dark'" src="@/assets/dark/NextButton.png"
+                class="nav-button next-button" :class="{ 'hidden': !showControls, 'visible': showControls }" width="85"
+                height="60" @click="nextSlide" />
+            <v-carousel v-model="currentSlide" height="auto" class="carousel" hide-delimiter-background hide-delimiters
+                :show-arrows="false">
                 <v-carousel-item v-for="image of imageFiles" :key="image">
                     <v-img :src="image" class="carousel-image" cover />
                 </v-carousel-item>
@@ -52,7 +34,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useTheme } from 'vuetify'
 
+const theme = useTheme()
 const dialog = defineModel('dialog', {
     type: Boolean,
     required: true
@@ -83,12 +67,12 @@ const previousSlide = () => {
 
 const showControlsTemporarily = () => {
     showControls.value = true
-    
+
     // Clear existing timeout
     if (hideTimeout) {
         clearTimeout(hideTimeout)
     }
-    
+
     // Set new timeout to hide controls after 2 seconds
     hideTimeout = setTimeout(() => {
         showControls.value = false
@@ -144,7 +128,7 @@ onUnmounted(() => {
     top: 40px;
     right: 40px;
     width: 100px;
-    height: 100px;
+    height: 80px;
     z-index: 2;
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
@@ -177,12 +161,14 @@ onUnmounted(() => {
 .prev-button.hidden {
     opacity: 0 !important;
     pointer-events: none;
-    transform: translateY(-50%) translateX(-120px) !important; /* Slide out to the left */
+    transform: translateY(-50%) translateX(-120px) !important;
+    /* Slide out to the left */
 }
 
 .prev-button.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(0) !important; /* Slide in from the left */
+    transform: translateY(-50%) translateX(0) !important;
+    /* Slide in from the left */
 }
 
 .next-button {
@@ -192,11 +178,13 @@ onUnmounted(() => {
 .next-button.hidden {
     opacity: 0 !important;
     pointer-events: none;
-    transform: translateY(-50%) translateX(120px) !important; /* Slide out to the right */
+    transform: translateY(-50%) translateX(120px) !important;
+    /* Slide out to the right */
 }
 
 .next-button.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(0) !important; /* Slide in from the right */
+    transform: translateY(-50%) translateX(0) !important;
+    /* Slide in from the right */
 }
 </style>
