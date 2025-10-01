@@ -3,7 +3,7 @@
   <div class="d-flex justify-center align-center">
     <div class="books-grid">
       <div class="book" v-for="book of books" :key="book.id" @click="handleBookClick(book)">
-        <img :src="book.cover" alt="Book Cover" height="150" />
+        <img :src="book.cover" alt="Book Cover" height="200" />
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ const books = ref(comicsConfig);
 
 // Import images
 import lightBookcase from '@/assets/HomePageBookcase-Light.png'
-import darkBookcase from '@/assets/HomePageBookcase-Dark.png'
+import darkBookcase from '@/assets/HomePageBookcase-Dark2.png'
 
 const theme = useTheme()
 
@@ -60,9 +60,10 @@ const selectedBook = ref(books.value[0]);
   grid-template-rows: 30vh 30vh;
   /* Two rows, each taking 222px */
   position: absolute;
-  top: 30%;
+  top: 31%;
   z-index: 2;
-  column-gap: 90px;
+  row-gap: 1.3vh;
+  column-gap: 8.3vw;
 }
 
 .book {
