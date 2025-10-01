@@ -22,10 +22,9 @@
 
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
 
-const route = useRoute()
 const router = useRouter()
 const theme = useTheme()
 

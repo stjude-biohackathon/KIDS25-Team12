@@ -67,7 +67,7 @@ const props = defineProps({
 
 const currentSlide = ref(0)
 const showControls = ref(true)
-let hideTimeout: NodeJS.Timeout | null = null
+let hideTimeout: number | null = null
 
 const nextSlide = () => {
     if (currentSlide.value < props.imageFiles.length - 1) { // Use actual array length

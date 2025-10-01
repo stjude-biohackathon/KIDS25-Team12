@@ -19,12 +19,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useTheme } from 'vuetify'
-import Reader from './Reader.vue'
+import Reader from '@/components/Reader.vue'
 import Preview from '@/components/Preview.vue'
-import MeetCharacters from './MeetCharacters.vue'
+import MeetCharacters from '@/components/MeetCharacters.vue'
 import { comicsConfig } from '@/config/comics'
 
-// This is a BOOK OBJECT
 const previewDialog = ref(false);
 const charactersDialog = ref(false);
 const readerDialog = ref(false);

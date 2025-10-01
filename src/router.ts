@@ -12,11 +12,6 @@ const routes = [
         component: () => import('@/views/Home.vue'),
         meta: { requiresAuth: true }
     },
-    {
-        path: '/meet-characters',
-        name: 'MeetCharacters',
-        component: () => import('@/views/MeetCharacters.vue')
-    }
 ]
 
 const router = createRouter({

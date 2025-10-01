@@ -64,7 +64,7 @@ const props = defineProps({
 const currentSlide = ref(0)
 const showControls = ref(true)
 const loadedImages = ref<Record<number, boolean>>({})
-let hideTimeout: NodeJS.Timeout | null = null
+let hideTimeout: number | null = null
 
 // Track image loading
 const onImageLoad = (index: number) => {

@@ -33,7 +33,7 @@ const dialog = defineModel('dialog', {
     required: true
 })
 
-const props = defineProps({
+defineProps({
     book: {
         type: Object as () => {
             id: number;
@@ -49,7 +49,7 @@ const props = defineProps({
 const emits = defineEmits(['open-reader', 'open-characters'])
 
 const showControls = ref(true)
-let hideTimeout: NodeJS.Timeout | null = null
+let hideTimeout: number | null = null
 
 const showControlsTemporarily = () => {
     showControls.value = true
