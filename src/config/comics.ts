@@ -7,12 +7,14 @@ export const comicsConfig = [
     description:
       'Dive into the thrilling world of CAR-T therapy with "CAR-T Titans." Follow the journey of brave heroes battling cancer at the cellular level, showcasing the power of cutting-edge science and teamwork.',
     characterFiles: [
-      "/comics-1/characters/Page1.png",
-      "/comics-1/characters/Page1 Copy.png",
+      "/comics-1/characters/leukemia.png",
+      "/comics-1/characters/TCellTitan.png",
+      "/comics-1/characters/VectorVortex.png",
     ],
     characterDescriptions: [
       "Character 1 is a fearless leader with a heart of gold, determined to save lives through innovative treatments.",
       "Character 2 is a brilliant scientist whose inventions are key to the success of CAR-T therapy.",
+      "Character 3 is a cunning strategist who uses their intellect to outsmart opponents and protect their team.",
     ],
   },
   {

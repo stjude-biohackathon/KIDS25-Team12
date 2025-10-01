@@ -10,24 +10,27 @@
 
   <!-- Popup Modal with Animation -->
   <Preview :book="selectedBook" v-model:dialog="previewDialog"
-    @open-reader="() => { previewDialog = false; readerDialog = true }" />
+    @open-reader="() => { previewDialog = false; readerDialog = true }"
+    @open-characters="() => { previewDialog = false; charactersDialog = true }" />
   <Reader v-model:dialog="readerDialog" :image-files="selectedBook.comics || []" />
+  <MeetCharacters v-model:dialog="charactersDialog" :image-files="selectedBook.characterFiles || []"
+    :character-descriptions="selectedBook.characterDescriptions || []" />
 </template>
-
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useTheme } from 'vuetify'
 import Reader from './Reader.vue'
 import Preview from '@/components/Preview.vue'
-import { books, comicsConfig } from '@/config/comics'
+import MeetCharacters from './MeetCharacters.vue'
+import { comicsConfig } from '@/config/comics'
 
 // This is a BOOK OBJECT
 const previewDialog = ref(false);
+const charactersDialog = ref(false);
 const readerDialog = ref(false);
 
 const handleBookClick = (book: any) => {
   selectedBook.value = book;
-  console.log(selectedBook.value);
   previewDialog.value = true;
 }
 
@@ -42,7 +45,6 @@ const theme = useTheme()
 const backgroundImage = computed(() => {
   return theme.global.name.value === 'light' ? lightBookcase : darkBookcase
 })
-
 
 
 const selectedBook = ref(books.value[0]); 
