@@ -107,8 +107,8 @@ onUnmounted(() => {
 
 .close-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 40px;
+    right: 40px;
     width: 100px;
     height: 100px;
     z-index: 2;
