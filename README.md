@@ -1,3 +1,22 @@
+# How to run
+The following command will start the development server at http://localhost:3000.
+```
+npm run dev
+```
+## Versions
+```
+$ node --version
+v24.9.0
+$ npm --version
+11.6.0
+$ npm ls vuetify --json | jq -r '.dependencies.vuetify.version'
+3.10.4
+$ npm ls vite --json | jq -r '.dependencies.vite.version'
+7.1.7
+$ npm ls vite-plugin-vuetify --json | jq -r '.dependencies["vite-plugin-vuetify"].version'
+2.1.2
+```
+
 # Vue 3 + TypeScript + Vite
 
 This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
@@ -17,4 +36,3 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-- 
